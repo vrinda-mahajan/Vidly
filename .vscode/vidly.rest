@@ -1,0 +1,98 @@
+
+
+POST http://localhost:5000/api/genres
+Content-Type: application/json
+
+{"name": "Action",
+  "description": "Movies that are packed with thrilling sequences, high-energy stunts, and intense physical battles, often featuring heroes or heroines fighting against villains or saving the day.",
+  "popularExamples": ["Die Hard", "Mad Max: Fury Road", "John Wick"]
+}
+###
+
+GET http://localhost:5000/api/genres
+
+###
+PUT http://localhost:5000/api/genres/64a7ce9364062c9556f63c6d
+Content-Type: application/json
+
+{
+    "name":"Action",
+  "description": "Movies packed with thrilling sequences, high-energy stunts, and intense physical battles",
+  "popularExamples": ["Die Hard", "Max Mad", "John Wick"]
+}
+
+###
+
+DELETE http://localhost:5000/api/genres/64a7ce9364062c9556f63c6d
+
+###
+
+POST http://localhost:5000/api/customers
+Content-Type: application/json
+
+{
+  "name": "Vrinda",
+  "isGold": "true",
+  "phone": "1234"
+}
+
+###
+
+GET http://localhost:5000/api/customers
+
+###
+PUT http://localhost:5000/api/customers/64a7d72e14576ab216469b51
+Content-Type: application/json
+
+{
+  "name": "Vrinda Mahajan",
+  "isGold": true,
+  "phone": "123456780"
+}
+
+###
+DELETE http://localhost:5000/api/customers/64a7d381c060fb5b0ec3346a
+
+###
+
+GET http://localhost:5000/api/movies
+
+###
+POST http://localhost:5000/api/movies
+Content-Type: application/json
+
+{
+  "title": "Ra-one",
+  "genreId": "64a7ddbd1d1171397f888b99",
+  "numberInStock": 0,
+  "dailyRentalRate": 0
+}
+
+###
+
+PUT http://localhost:5000/api/movies/64a9207d33f069abb9206150
+Content-Type: application/json
+
+{
+  "title": "Ra-one",
+  "genreId": "64a7ddbd1d1171397f888b99",
+  "numberInStock": 10,
+  "dailyRentalRate": 7
+}
+
+###
+
+DELETE http://localhost:5000/api/movies/64a9207d33f069abb9206150
+###
+
+GET http://localhost:5000/api/rentals
+
+###
+POST http://localhost:5000/api/rentals
+Content-Type: application/json
+
+{
+  "customerId": "6234",
+  "movieId": "64a9218d15e44bf744278860"
+}
+###
