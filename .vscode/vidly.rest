@@ -96,3 +96,13 @@ Content-Type: application/json
   "movieId": "64a9218d15e44bf744278860"
 }
 ###
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+  "name": "Vrinda",
+  "email": "vrindamahajan@gmail.com",
+  "password": "987654321"
+}
+###
