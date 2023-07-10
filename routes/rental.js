@@ -4,7 +4,7 @@ const router = express.Router();
 const { Rental, validate } = require("../models/rentalModel");
 const { Customer } = require("../models/customerModel");
 const { Movie } = require("../models/movieModel");
-const mongoose = require("mongoose");
+const auth = require("../middlewares/auth");
 
 Fawn.init("mongodb://127.0.0.1/vidly");
 
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   const rental = await Rental.find();
   res.send(rental);
 });
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   console.log(req.body);
   const { error } = validate(req.body);
   if (error) return res.status(404).send(error.details[0].message);
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
   await rental.save();
   movie.numberInStock--;
   movie.save();
-  res.send(rental);  
+  res.send(rental);
 
   //   try {
   //     var task = Fawn.Task();

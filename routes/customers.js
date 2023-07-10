@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {Customer,validate} = require("../models/customerModel");
-
+const { Customer, validate } = require("../models/customerModel");
+const auth = require("../middlewares/auth");
 
 router.get("/", async (req, res) => {
   const customers = await Customer.find();
@@ -11,7 +11,7 @@ router.get("/:id", async (req, res) => {
   const customer = await Customer.findById({ _id: req.params.id });
   res.send(customer);
 });
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   console.log(req.body);
@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
   const customer = await newCustomer.save();
   res.send(customer);
 });
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   console.log(req.body);
@@ -31,7 +31,7 @@ router.put("/:id", async (req, res) => {
   res.send(customer);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const customer = await Customer.findByIdAndRemove(req.params.id);
   if (!customer) return res.status(404).send("Customer not found!");
   res.send(customer);

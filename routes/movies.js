@@ -1,20 +1,8 @@
-// const createMovie = async () => {
-//   const movie = new Movie({
-//     title: "Ra-one",
-//     genre: "64a7ddbd1d1171397f888b99",
-//     numberInStock: 0,
-//     dailyRentalRate: 0,
-//   });
-//   const result = await movie.save();
-//   console.log(result);
-// };
-
-// createMovie();
-
 const express = require("express");
 const { validate, Movie } = require("../models/movieModel");
 const { Genre } = require("../models/genreModel");
 const router = express.Router();
+const auth = require("../middlewares/auth");
 
 router.get("/", async (req, res) => {
   const movies = await Movie.find().sort("name");
@@ -24,7 +12,7 @@ router.get("/:id", async (req, res) => {
   const movie = await Movie.findById(req.params.id);
   res.send(movie);
 });
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(404).send(error.details[0].message);
   const genre = await Genre.findById(req.body.genreId);
@@ -42,7 +30,7 @@ router.post("/", async (req, res) => {
   console.log(movie);
   res.send(movie);
 });
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   const movie = await Movie.findByIdAndUpdate(
     { _id: req.params.id },
     {
@@ -57,7 +45,7 @@ router.put("/:id", async (req, res) => {
   res.send(movie);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   const movie = await Movie.findByIdAndRemove(req.params.id);
   if (!movie) return res.status(404).send("Movie not found!");
   res.send(movie);

@@ -2,6 +2,7 @@
 
 POST http://localhost:5000/api/genres
 Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiZjI1MjZkMDQ1YzM5ZDAwYjU1NzgiLCJpYXQiOjE2ODg5OTAyOTB9.cj9esehaIT1Rw2HkbIEhNgqyR54C_3jNpxf83LqdUiQ
 
 {"name": "Action",
   "description": "Movies that are packed with thrilling sequences, high-energy stunts, and intense physical battles, often featuring heroes or heroines fighting against villains or saving the day.",
@@ -102,9 +103,14 @@ Content-Type: application/json
 
 {
   "name": "Vrinda",
-  "email": "vrindamahajan@gmail100.com",
+  "email": "vrindamahajan@gmail00.com",
   "password": "987654321"
 }
+###
+
+GET http://localhost:5000/api/users/me
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiZjI1MjZkMDQ1YzM5ZDAwYjU1NzgiLCJpYXQiOjE2ODg5OTAyOTB9.cj9esehaIT1Rw2HkbIEhNgqyR54C_3jNpxf83LqdUiQ
+
 ###
 
 POST http://localhost:5000/api/login
