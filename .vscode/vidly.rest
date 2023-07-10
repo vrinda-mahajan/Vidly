@@ -102,7 +102,15 @@ Content-Type: application/json
 
 {
   "name": "Vrinda",
-  "email": "vrindamahajan@gmail.com",
+  "email": "vrindamahajan@gmail100.com",
   "password": "987654321"
 }
 ###
+
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+  "email": "vrindamahajan@gmail.com",
+  "password": "987654321"
+}

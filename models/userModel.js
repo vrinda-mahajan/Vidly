@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, minlength: 5, maxlength: 50 },
@@ -12,6 +13,12 @@ const userSchema = new mongoose.Schema({
   },
   password: { type: String, required: true, minlength: 5 },
 });
+
+// Information Expert Principle
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ _id: this._id }, process.env.JWT_PRIVATE_KEY);
+  return token;
+};
 
 const validateUser = (user) => {
   const schema = Joi.object({
