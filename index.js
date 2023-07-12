@@ -12,8 +12,12 @@ const users = require("./routes/users");
 const auth = require("./routes/auth");
 const error = require("./middlewares/error");
 const winston = require("winston");
+require("./startup/routes")(app);
 
 winston.add(new winston.transports.File({ filename: "logfile.log" }));
+winston.exceptions.handle(
+  new winston.transports.File({ filename: "uncaughtExceptions.log" })
+);
 
 const mongoose = require("mongoose");
 mongoose
