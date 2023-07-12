@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("express-async-errors")
+require("express-async-errors");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const express = require("express");
@@ -11,6 +11,9 @@ const rentals = require("./routes/rental");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const error = require("./middlewares/error");
+const winston = require("winston");
+
+winston.add(new winston.transports.File({ filename: "logfile.log" }));
 
 const mongoose = require("mongoose");
 mongoose
@@ -26,7 +29,7 @@ app.use("/api/rentals", rentals);
 app.use("/api/users", users);
 app.use("/api/login", auth);
 
-app.use(error)
+app.use(error);
 app.get("/", (req, res) => {
   res.send("Welcome to Vidly API services.");
 });
