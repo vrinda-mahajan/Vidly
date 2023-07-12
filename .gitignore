@@ -1,6 +1,5 @@
 # dependencies
 /node_modules
-
 # misc
 .DS_Store
 .env
@@ -9,3 +8,4 @@
 .env.test.local
 .env.production.local
 .rest
+.log
