@@ -24,7 +24,8 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5000/api/genres/64a7ce9364062c9556f63c6d
+DELETE http://localhost:5000/api/genres/64ac008ac4de8f25b3bb6ffd
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGFiZmYwOGRmNjVlOTZlMTE2MGM2MjUiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2ODg5OTM1NDR9.itfF3vMeCCvAZ9nISDQPEgBHM4vOOsSNaiQKCbvudAY
 
 ###
 
@@ -102,9 +103,10 @@ POST http://localhost:5000/api/users
 Content-Type: application/json
 
 {
-  "name": "Vrinda",
-  "email": "vrindamahajan@gmail00.com",
-  "password": "987654321"
+  "name": "Dummy",
+  "email": "dummyemail@gmail00.com",
+  "password": "987654321223",
+  "isAdmin": "true"
 }
 ###
 

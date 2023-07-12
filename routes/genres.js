@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Genre, validate } = require("../models/genreModel");
 const auth = require("../middlewares/auth");
+const admin = require("../middlewares/admin");
 
 const createGenre = async (body) => {
   try {
@@ -32,7 +33,8 @@ const updateGenre = async (id, body) => {
 
 const deleteGenre = async (id) => {
   const result = await Genre.findByIdAndRemove(id);
-  console.log(result);
+  console.log("Delete", result);
+  return result;
 };
 
 router.get("/", async (req, res) => {
@@ -60,8 +62,9 @@ router.put("/:id", auth, async (req, res) => {
   res.send(genre);
 });
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", [auth, admin], async (req, res) => {
   const genre = await deleteGenre(req.params.id);
+  console.log(genre);
   if (!genre) return res.status(404).send("Genre Id does not exists!");
   res.send(genre);
 });
